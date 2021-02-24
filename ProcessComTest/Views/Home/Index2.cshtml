@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page Index 2";
+}
+
+<div class="text-center" style="background-color:@ViewBag.BackgroundColor">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <hr />
+    <form method="post">
+        <div class="form-group">
+            <input type="text" name="colorName" class="form-control" placeholder="Color to change into" />
+            <input type="submit" value="Change Color" class="form-control btn-primary mt-2" />
+        </div>
+    </form>
+    <hr />
+    <p>Process Name: @ViewBag.ProcessName</p>
+    <p>Process Id: @ViewBag.ProcessID</p>
+    <p>Color Value from File: @ViewBag.BackgroundColor</p>
+    <p>Process List Count: @ViewBag.ProcessListCount</p>
+    <ul>
+        @foreach (var item in ViewBag.ProcessList)
+        {
+            <li>@item</li>
+        }
+    </ul>
+</div>
