@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - ProcessComTest</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("Styles", required: false)
 </head>
 <body>
     <header>
@@ -35,7 +36,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted" style="background-color: white">
         <div class="container">
             &copy; 2021 - ProcessComTest - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

@@ -63,7 +63,8 @@ namespace ProcessComTest
                 // Set cache options.
                 var cacheEntryOptions = new MemoryCacheEntryOptions()
                     // Keep in cache for this time, reset time if accessed.
-                    .SetSlidingExpiration(TimeSpan.FromSeconds(20));
+                    .SetSlidingExpiration(TimeSpan.FromSeconds(5))
+                    .SetAbsoluteExpiration(TimeSpan.FromSeconds(30));
 
                 // Save data in cache.
                 _cache.Set(CacheKeys.Entry, cacheEntry, cacheEntryOptions);
@@ -73,9 +74,10 @@ namespace ProcessComTest
                 // Set cache options.
                 var cacheEntryOptions = new MemoryCacheEntryOptions()
                     // Keep in cache for this time, reset time if accessed.
-                    .SetSlidingExpiration(TimeSpan.FromSeconds(20));
-                
-                if(!string.IsNullOrWhiteSpace(_data) && !_data.Equals(cacheEntry))
+                    .SetSlidingExpiration(TimeSpan.FromSeconds(5))
+                    .SetAbsoluteExpiration(TimeSpan.FromSeconds(30));
+
+                if (!string.IsNullOrWhiteSpace(_data) && !_data.Equals(cacheEntry))
                 {
                     cacheEntry = _data;
                     _data = string.Empty;

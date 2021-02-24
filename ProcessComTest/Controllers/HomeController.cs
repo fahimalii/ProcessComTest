@@ -10,6 +10,7 @@ using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProcessComTest.Controllers
@@ -41,8 +42,10 @@ namespace ProcessComTest.Controllers
             _cache.TryGetValue(CacheKeys.Entry, out string data);
             var isDataFromCache = true;
 
-            if(string.IsNullOrWhiteSpace(data))
+            
+            if (string.IsNullOrWhiteSpace(data))
             {
+                Thread.Sleep(2000);
                 data = System.IO.File.ReadAllText(_filePath);
                 isDataFromCache = false;
                 _memoryCacheTest.SetItemInCacheTest(_filePath);
@@ -168,7 +171,7 @@ namespace ProcessComTest.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [ResponseCache(Duration = 20, Location = ResponseCacheLocation.Any, NoStore = false)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

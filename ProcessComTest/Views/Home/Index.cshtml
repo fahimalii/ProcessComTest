@@ -1,8 +1,25 @@
-﻿@{
+﻿@model string
+
+@{
     ViewData["Title"] = "Home Page";
+    var data = (string)ViewBag.Data;
+    data = data.Split("\r\n")[0];
+    
 }
 
-<div class="text-center" style="background-color:@ViewBag.BackgroundColor">
+@section Styles {
+    @{
+        if(data.Equals("1")){
+            <link href="~/css/Theme1.css" rel="stylesheet" />
+        }
+        else{
+            <link href="~/css/Theme2.css" rel="stylesheet" />
+        }
+    }
+}
+
+<div class="text-center">
+    @data
     <form action="/" method="post">
         <input type="text" name="colorName" placeholder="Enter Color Name" />
         <input type="submit" name="changeColorBtn" value="Update Color" />
@@ -13,7 +30,7 @@
     <h3>@ViewBag.Data</h3>
     <h4>Is Data From Cache: @ViewBag.IsDataFromCache</h4>
 
-    <p style="background-color:@ViewBag.Data">
+    <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

@@ -24,6 +24,7 @@ namespace ProcessComTest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddMemoryCache();
             services.AddSingleton<IMemoryCacheTest, MemoryCacheTest>();
         }
 
